@@ -1,0 +1,15 @@
+This application is a simple Flask implementation of DNS protocol, consisting of 
+user server, Fibonacci server and authoritative server.
+Fibonacci server registers its hostname and ip address at authoritative server.
+When user comes up with a request of getting fibonacci number, user server queries
+authoritative server for the ip address of fibonacci server. Then it sends request to
+fibonacci server for the calculation result and return it.
+
+Authoritative server receive and respond to queries with UDP connection.
+
+
+Library used:
+flask
+requests
+socket
+
