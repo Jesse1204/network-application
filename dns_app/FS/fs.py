@@ -14,16 +14,16 @@ def return_fib():
     print(isinstance(number, str) )
     if number.isdigit():
         int_number = int(number)
-        return cal_fib(int_number)
+        return str(cal_fib(int_number))
     else:
         return "Bad Format",400
 
 
 def cal_fib(number):
     if number <= 1:
-        return str(number)
+        return number
     if number == 2:
-        return "1"
+        return 1
     cur_num = 0
     prev1 = 1
     prev2 = 1
@@ -31,7 +31,7 @@ def cal_fib(number):
         cur_num = prev1 + prev2
         prev2 = prev1
         prev1 = cur_num
-    return str(cur_num)
+    return cur_num
 
 
 @app.route('/register', methods=['PUT'])

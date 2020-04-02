@@ -10,20 +10,21 @@ app = Flask(__name__)
 
 @app.route('/fibonacci', methods=['GET'])
 def query_us():
-    hostname = request.args.get('hostname', '')
-    number = request.args.get('number', '')
-    fs_port = request.args.get('fs_port')
-    as_ip = request.args.get('as_ip')
-    as_port = int(request.args.get('as_port'))
-    if hostname == '' or number == '' or fs_port == '' or as_ip == '' or as_port == '':
-        return Response("Bad Request", status=400)
-    fs_ip = query_as(as_ip, as_port, hostname)
+    hostname = request.args.get('hostname', ' ')
+    number = request.args.get('number', ' ')
+    fs_port = request.args.get('fs_port',' ')
+    as_ip = request.args.get('as_ip',' ')
+    as_port = request.args.get('as_port',' ')
+    if hostname ==' ' or number == ' ' or fs_port == ' ' or as_ip == ' ' or as_port == ' ':
+        return "Bad Request", 400
+    digit_as_port = int(as_port)
+    fs_ip = query_as(as_ip, digit_as_port, hostname)
     fs_url = "http://" + fs_ip + ":" + fs_port + "/fibonacci?number=" + number
     print(fs_url)
     res = requests.get(fs_url)
     if res.status_code == 400:
-        return " Bad format"
-    return res.text
+        return " Bad format of the input number", 400
+    return res.text,200
 
 
 def query_as(as_ip, as_port, hostname):

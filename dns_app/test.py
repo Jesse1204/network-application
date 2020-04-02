@@ -4,14 +4,14 @@ import json
 url = 'http://172.18.0.3:9090/register'
 
 eg = {
-"hostname": "fibo.com",
+"hostname": "fibonacci.com",
 "ip": "172.18.0.3",
 "as_ip": "172.18.0.4",
 "as_port": "53533"
 }
 
 x = {
-  "hostname": "fibonacci.com",
+  "hostname": "fibo.com",
   "ip": "172.18.0.3",
   "as_ip": "172.18.0.4",
   "as_port": "53533"

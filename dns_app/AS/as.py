@@ -13,9 +13,9 @@ def get_response(query_message):
     message = json.loads(query_message.decode())
     request_type = message['TYPE']
     hostname = message['NAME']
-    ip_address = 'VALUE' in message
+    ttl = 'TTL' in message
 
-    if not ip_address:
+    if not ttl:
         return response_dns_query(request_type, hostname)
     else:
         ip_address = message['VALUE']
