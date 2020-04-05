@@ -1,0 +1,53 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: dns_app
+  labels:
+    run: dns_app
+spec:
+  type: NodePort
+  ports:
+  - port: 8080
+    targetPort: 8080
+    protocol: TCP
+    nodePort: 30003
+    name: us
+  - port: 9090
+    targetPort: 9090
+    protocol: TCP
+    nodePort: 30002
+    name: fs
+  - port: 53533
+    targetPort: 53533
+    protocol: UDP
+    nodePort: 30001
+    name: as
+  selector:
+    run: dns-app
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+ name: dns_app
+spec:
+  selector:
+    matchLabels:
+      run: dns_app
+  template:
+    metadata:
+      labels:
+        run: dns_app
+    spec:
+      containers:
+      - name: as
+        image: docker.io/jesse040011/as:v6
+        ports:
+        - containerPort: 53533
+      - name: fs
+        image: docker.io/jesse040011/fs:v4
+        ports:
+        - containerPort: 9090
+      - name: us
+        image: docker.io/jesse040011/us:v4
+        ports:
+        - containerPort: 8080
