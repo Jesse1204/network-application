@@ -1,9 +1,9 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: dns_app
+  name: dns-app
   labels:
-    run: dns_app
+    run: dns-app
 spec:
   type: NodePort
   ports:
@@ -28,26 +28,26 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
- name: dns_app
+ name: dns-app
 spec:
   selector:
     matchLabels:
-      run: dns_app
+      run: dns-app
   template:
     metadata:
       labels:
-        run: dns_app
+        run: dns-app
     spec:
       containers:
       - name: as
-        image: docker.io/jesse040011/as:v6
+        image: docker.io/jesse040011/as:latest
         ports:
         - containerPort: 53533
       - name: fs
-        image: docker.io/jesse040011/fs:v4
+        image: docker.io/jesse040011/fs:latest
         ports:
         - containerPort: 9090
       - name: us
-        image: docker.io/jesse040011/us:v4
+        image: docker.io/jesse040011/us:latest
         ports:
         - containerPort: 8080

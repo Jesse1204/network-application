@@ -7,6 +7,12 @@ fibonacci server for the calculation result and return it.
 
 Authoritative server receive and respond to queries with UDP connection.
 
+The application is now running on K8s cluster. Try visit:
+184.172.229.99:30002/fibonacci?number=1
+
+Port 30001: Authoritative server
+Port 30002: Fibonacci server
+Port 30003: User server
 
 Library used:
 flask
