@@ -23,7 +23,7 @@ def query_us():
     print(fs_url)
     res = requests.get(fs_url)
     if res.status_code == 400:
-        return " Bad format of the input number", 400
+        return "Bad format of the input number", 400
     return res.text,200
 
 
